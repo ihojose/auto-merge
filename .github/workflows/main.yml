@@ -12,6 +12,7 @@ on:
   check_suite:
     types:
       - completed
+  status: {}
 
 jobs:
   automerge:
@@ -23,4 +24,8 @@ jobs:
         env:
           GITHUB_TOKEN: "${{secrets.AUTOMERGE}}"
           LOG: "TRACE"
+      - name: feedback
+        if: steps.automerge.outputs.mergeResult == "merged"
+        run: |
+          echo "Pull request ${{ steps.automerge.outputs.pullRequestNumber }} merged!"
 
