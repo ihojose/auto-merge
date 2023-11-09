@@ -39,9 +39,10 @@ jobs:
       - id: reject
         name: Feedback - Validation if rejected
         if: ${{!startsWith(github.event.pull_request.title, vars.REQ)}}
-        uses: superbrothers/close-pull-request@v3
-        with:
-          comment: "Pull request rechazado porque no cuenta con la estructura requerida para su aprobación"
+        env:
+          GH_TOKEN: ${{secrets.AUTOMERGE}}
+        run: |
+          gh pr close --comment "Pull request rechazado porque la estructura del título no empieza con el HU ${{vars.REQ}}."
 
       # FEEDBACK IF PULL REQUEST WAS MERGED ============================================================================
       - name: Feedback - Merged
