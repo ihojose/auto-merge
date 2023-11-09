@@ -46,9 +46,4 @@ jobs:
           comment: Pull request rechazado porque la estructura del título no es "${{ vars.REQ }} - Descripción".
           delete-branch: false
 
-      # FEEDBACK IF PULL REQUEST WAS MERGED ============================================================================
-      - name: Feedback - Merged
-        run: |
-          echo "Pull request #${{ github.event.pull_request.number }} for requirement ${{ vars.REQ }} merged!"
-
 
