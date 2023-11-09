@@ -28,5 +28,6 @@ jobs:
       - name: Feedback
         run: |
           echo "Pull request title ${{github.event.pull_request.title}}"
+          echo "Contains CVAPD00664018? ${{contains('CVAPD00664018',github.event.pull_request.title)}}"
       
 
