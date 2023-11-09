@@ -28,26 +28,27 @@ jobs:
       # DO QA AUTO-MERGE ===============================================================================================
       - id: automerge
         name: Merge Pull Request
-        if: ${{startsWith(github.event.pull_request.title, vars.REQ)}}
+        if: ${{ startsWith(github.event.pull_request.title, vars.REQ) }}
         uses: juliangruber/merge-pull-request-action@v1
         with:
-          github-token: ${{secrets.AUTOMERGE}}
+          github-token: ${{ secrets.AUTOMERGE }}
           number: ${{ github.event.pull_request.number }}
           method: merge
 
       # FEEDBACK IF PULL REQUEST REQUIREMENT/US/HU IS INCORRECT ========================================================
       - id: reject
         name: Feedback - Validation if rejected
-        if: ${{!startsWith(github.event.pull_request.title, vars.REQ)}}
-        env:
-          GH_TOKEN: ${{secrets.AUTOMERGE}}
-        run: |
-          gh pr close ${{github.event.pull_request.number}} --comment "Pull request rechazado porque la estructura del título no empieza con el HU ${{vars.REQ}}."
+        if: ${{ !startsWith(github.event.pull_request.title, vars.REQ) }}
+        uses: peter-evans/close-pull@v3
+        with:
+          pull-request-number: ${{ github.event.pull_request.number }}
+          comment: Pull request rechazado porque la estructura del título no empieza con el HU ${{ vars.REQ }}.
+          delete-branch: false
 
       # FEEDBACK IF PULL REQUEST WAS MERGED ============================================================================
       - name: Feedback - Merged
-        if: ${{github.event.pull_request.merged}}
+        if: ${{ github.event.pull_request.merged }}
         run: |
-          echo "Pull request #${{github.event.pull_request.number}} for requirement ${{vars.REQ}} merged!"
+          echo "Pull request #${{ github.event.pull_request.number }} for requirement ${{ vars.REQ }} merged!"
 
 
