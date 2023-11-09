@@ -42,7 +42,7 @@ jobs:
         env:
           GH_TOKEN: ${{secrets.AUTOMERGE}}
         run: |
-          gh pr close --comment "Pull request rechazado porque la estructura del título no empieza con el HU ${{vars.REQ}}."
+          gh pr close ${{github.event.pull_request.number}} --comment "Pull request rechazado porque la estructura del título no empieza con el HU ${{vars.REQ}}."
 
       # FEEDBACK IF PULL REQUEST WAS MERGED ============================================================================
       - name: Feedback - Merged
