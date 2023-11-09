@@ -2,15 +2,10 @@ name: Auto Devops QA Merge
 
 on:
   pull_request:
+    branches:
+      - master
     types:
-      - labeled
-      - unlabeled
-      - synchronize
       - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
   pull_request_review:
     types:
       - submitted
@@ -24,14 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: automerge
-        name: automerge
-        uses: "pascalgn/automerge-action@v0.15.6"
-        env:
-          GITHUB_TOKEN: "${{secrets.AUTOMERGE}}"
-          LOG: "TRACE"
-      - name: feedback
-        # if: steps.automerge.outputs.mergeResult == "merged"
-        run: |
-          echo "${{ steps.automerge.outputs.mergeResult }}!"
-          echo "Pull request ${{ steps.automerge.outputs.pullRequestNumber }} merged!"
+        name: Merge Pull Request
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{secrets.AUTOMERGE}}
 
