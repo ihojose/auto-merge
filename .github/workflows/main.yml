@@ -20,6 +20,6 @@ jobs:
       - name: feedback
         # if: steps.automerge.outputs.mergeResult == "merged"
         run: |
-          echo "${{ steps.automerge.outputs.mergeResult }}"
+          echo "${{ steps.automerge.outputs.mergeResult }}!"
           echo "Pull request ${{ steps.automerge.outputs.pullRequestNumber }} merged!"
 
