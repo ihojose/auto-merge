@@ -50,6 +50,6 @@ jobs:
       - name: Feedback - Merged
         run: |
           echo "Pull request #${{ github.event.pull_request.number }} for requirement ${{ vars.REQ }} merged!"
-          echo "${{toJson(github.event.pull_request)}}"
+          echo "${{toJson(github)}}"
 
 
