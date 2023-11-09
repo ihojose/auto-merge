@@ -26,14 +26,16 @@ jobs:
 #          number: ${{ github.event.pull_request.number }}
       - id: automerge
         name: Merge Pull Request
-        if: ${{ contains(env.REQ, github.event.pull_request.title) }}
+        if: contains(env.REQ, github.event.pull_request.title)
         uses: juliangruber/merge-pull-request-action@v1
         with:
           github-token: ${{secrets.AUTOMERGE}}
           number: ${{ github.event.pull_request.number }}
           method: merge
       - name: Feedback
+        # if: ${{ contains(env.REQ, github.event.pull_request.title) }}
         run: |
           echo "Pull request #${{github.event.pull_request.number}} merged!"
+          echo "steps.automerge.outputs.mergeResult"
       
 
