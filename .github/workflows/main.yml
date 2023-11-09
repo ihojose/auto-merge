@@ -12,11 +12,12 @@ on:
     check_suite:
       types:
         - completed
-    status: {}
+    status: { }
 
 jobs:
   automerge:
     runs-on: ubuntu-latest
+    if: contains('CVAPD00664018', github.event.pull_request.title)
     steps:
       - id: automerge
         name: Merge Pull Request
@@ -24,4 +25,5 @@ jobs:
         with:
           github-token: ${{secrets.AUTOMERGE}}
           number: ${{ github.event.pull_request.number }}
+          method: merge
 
