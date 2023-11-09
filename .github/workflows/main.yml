@@ -26,7 +26,7 @@ jobs:
 #          number: ${{ github.event.pull_request.number }}
       - id: automerge
         name: Merge Pull Request
-        if: ${{ contains('CVAPD00664018', github.event.pull_request.title) }}
+        if: ${{ startWith($REQ, github.event.pull_request.title) }}
         uses: juliangruber/merge-pull-request-action@v1
         with:
           github-token: ${{secrets.AUTOMERGE}}
@@ -34,7 +34,6 @@ jobs:
           method: merge
       - name: Feedback
         run: |
-          echo "Pull request title ${{github.event.pull_request.title}}"
-          echo "Contains CVAPD00664018? ${{contains('CVAPD00664018',github.event.pull_request.title)}}"
+          echo "Pull request #${{github.event.pull_request.number}} merged!"
       
 
