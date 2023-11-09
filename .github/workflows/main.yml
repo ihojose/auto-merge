@@ -43,7 +43,7 @@ jobs:
         with:
           token: ${{ secrets.AUTOMERGE }}
           pull-request-number: ${{ github.event.pull_request.number }}
-          comment: Pull request rechazado porque la estructura del título no empieza con el HU ${{ vars.REQ }}.
+          comment: Pull request rechazado porque la estructura del título no es "${{ vars.REQ }} - Descripción".
           delete-branch: false
 
       # FEEDBACK IF PULL REQUEST WAS MERGED ============================================================================
@@ -51,5 +51,6 @@ jobs:
         if: ${{ github.event.pull_request.merged }}
         run: |
           echo "Pull request #${{ github.event.pull_request.number }} for requirement ${{ vars.REQ }} merged!"
+          echo "${{toJson(github.event.pull_request)}}"
 
 
