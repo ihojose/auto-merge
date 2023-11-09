@@ -18,8 +18,7 @@ jobs:
           GITHUB_TOKEN: "${{secrets.AUTOMERGE}}"
           LOG: "TRACE"
       - name: feedback
-        # if: steps.automerge.outputs.mergeResult == "merged"
+        if: steps.automerge.outputs.mergeResult == "merged"
         run: |
-          echo "${{ steps.automerge.outputs.mergeResult }}"
           echo "Pull request ${{ steps.automerge.outputs.pullRequestNumber }} merged!"
 
