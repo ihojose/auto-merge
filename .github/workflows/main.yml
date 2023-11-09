@@ -37,7 +37,7 @@ jobs:
         with:
           token: ${{ secrets.AUTOMERGE }}
           pull-request-number: ${{ github.event.pull_request.number }}
-          comment: Pull request rechazado porque la estructura del título no es "${{ vars.REQ }} - Descripción".
+          comment: 'Pull request rechazado porque la estructura del título no es "${{ vars.REQ }} - Descripción"'.
           delete-branch: false
 
 
