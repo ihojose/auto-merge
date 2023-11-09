@@ -42,8 +42,6 @@ jobs:
         uses: superbrothers/close-pull-request@v3
         with:
           comment: "Pull request rechazado porque no cuenta con la estructura requerida para su aprobación"
-        run: |
-          echo "The pull request isn't start with ${{vars.REQ}} in the title."
 
       # FEEDBACK IF PULL REQUEST WAS MERGED ============================================================================
       - name: Feedback - Merged
