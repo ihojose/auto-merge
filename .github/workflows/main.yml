@@ -26,7 +26,7 @@ jobs:
 #          number: ${{ github.event.pull_request.number }}
       - id: automerge
         name: Merge Pull Request
-        if: ${{ startWith($REQ, github.event.pull_request.title) }}
+        if: ${{ startsWith($REQ, github.event.pull_request.title) }}
         uses: juliangruber/merge-pull-request-action@v1
         with:
           github-token: ${{secrets.AUTOMERGE}}
