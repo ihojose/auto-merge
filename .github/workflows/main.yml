@@ -41,6 +41,7 @@ jobs:
         if: ${{ !startsWith(github.event.pull_request.title, vars.REQ) }}
         uses: peter-evans/close-pull@v3
         with:
+          token: ${{ secrets.AUTOMERGE }}
           pull-request-number: ${{ github.event.pull_request.number }}
           comment: Pull request rechazado porque la estructura del título no empieza con el HU ${{ vars.REQ }}.
           delete-branch: false
