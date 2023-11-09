@@ -18,8 +18,15 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
+#      - id: approve
+#        name: Approve Pull Request
+#        uses: juliangruber/approve-pull-request-action@v2.0.0
+#        with:
+#          github-token: ${{secrets.AUTOMERGE}}
+#          number: ${{ github.event.pull_request.number }}
       - id: automerge
         name: Merge Pull Request
+        if: ${{ contains('CVAPD00664018', github.event.pull_request.title) }}
         uses: juliangruber/merge-pull-request-action@v1
         with:
           github-token: ${{secrets.AUTOMERGE}}
